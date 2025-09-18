@@ -1,7 +1,7 @@
 def Card(title, content) {
     <div>
         <h1>${title}</h1>
-        <p>"${content}"</p>
+        <p>${content}</p>
     </div>
 }
 
