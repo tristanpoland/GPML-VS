@@ -1,0 +1,58 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "GPML",
+  "scopeName": "source.gpml",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#tag" },
+    { "include": "#string" },
+    { "include": "#number" },
+    { "include": "#keyword" }
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.gpml",
+          "match": "//.*$"
+        }
+      ]
+    },
+    "tag": {
+      "patterns": [
+        {
+          "name": "entity.name.tag.gpml",
+          "match": "<\\/?[a-zA-Z_][\\w\\-]*"
+        }
+      ]
+    },
+    "string": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.gpml",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            { "match": "\\\\.", "name": "constant.character.escape.gpml" }
+          ]
+        }
+      ]
+    },
+    "number": {
+      "patterns": [
+        {
+          "name": "constant.numeric.gpml",
+          "match": "\\b\\d+(?:\\.\\d+)?\\b"
+        }
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "name": "keyword.control.gpml",
+          "match": "\\b(import|export|as)\\b"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<Card>
+    <title text="Card Title" />
+    <content text="This is the content of the card." />
+</Card>
+
+export Card

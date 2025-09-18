@@ -1,0 +1,33 @@
+{
+  "name": "gpml-vs",
+  "displayName": "GPML Language Support",
+  "description": "Language support for GPML files (.gpml) including syntax highlighting.",
+  "version": "0.0.1",
+  "publisher": "your-publisher-name",
+  "icon": "branding/GPML_Brand.png",
+  "engines": {
+    "vscode": ">=1.70.0"
+  },
+  "categories": ["Programming Languages"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "gpml",
+        "aliases": ["GPML", "gpml"],
+        "extensions": [".gpml"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "branding/GPML_Icon.png",
+          "dark": "branding/GPML_Icon.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "gpml",
+        "scopeName": "source.gpml",
+        "path": "./syntaxes/gpml.tmLanguage.json"
+      }
+    ]
+  }
+}
