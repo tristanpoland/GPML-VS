@@ -5,4 +5,3 @@ node_modules
 *.vsix
 src/test
 README.md
-branding/GPML_Icon.png
