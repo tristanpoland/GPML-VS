@@ -3,3 +3,7 @@ node_modules
 .git
 .gitignore
 *.vsix
+src/test
+README.md
+branding/GPML_Brand.png
+branding/GPML_Icon.png

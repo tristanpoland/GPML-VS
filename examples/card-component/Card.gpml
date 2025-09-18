@@ -1,6 +1,8 @@
-<Card>
-    <title text="Card Title" />
-    <content text="This is the content of the card." />
-</Card>
+def Card(title, content) {
+    <div>
+        <h1>${title}</h1>
+        <p>"${content}"</p>
+    </div>
+}
 
 export Card

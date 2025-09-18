@@ -4,11 +4,97 @@
   "scopeName": "source.gpml",
   "patterns": [
     { "include": "#comment" },
+    { "include": "#function" },
+    { "include": "#function-def" },
     { "include": "#tag" },
+    { "include": "#expression" },
     { "include": "#string" },
     { "include": "#number" },
     { "include": "#keyword" }
   ],
+    "function": {
+      "patterns": [
+        {
+          "name": "storage.type.function.gpml",
+          "match": "\\bdef\\b"
+        },
+        {
+          "name": "entity.name.function.gpml",
+          "match": "(?<=def )([A-Z][a-zA-Z0-9_]*)"
+        },
+        {
+          "name": "variable.parameter.gpml",
+          "match": "(?<=def [A-Z][a-zA-Z0-9_]*\\()[a-zA-Z0-9_, ]+(?=\\))"
+        },
+        {
+          "name": "punctuation.section.parameters.begin.gpml",
+          "match": "\\("
+        },
+        {
+          "name": "punctuation.section.parameters.end.gpml",
+          "match": "\\)"
+        },
+        {
+          "name": "punctuation.section.block.begin.gpml",
+          "match": "\\{"
+        },
+        {
+          "name": "punctuation.section.block.end.gpml",
+          "match": "\\}"
+        }
+      ]
+    },
+    "function-def": {
+      "patterns": [
+        {
+          "name": "meta.function.gpml",
+          "begin": "^\\s*def\\s+([A-Z][a-zA-Z0-9_]*)\\s*\\(([^)]*)\\)\\s*\\{",
+          "beginCaptures": {
+            "1": { "name": "entity.name.function.gpml" },
+            "2": { "name": "variable.parameter.gpml" }
+          },
+          "end": "^\\s*\\}",
+          "endCaptures": {
+            "0": { "name": "punctuation.section.block.end.gpml" }
+          },
+          "patterns": [
+            { "include": "#tag" },
+            { "include": "#expression" },
+            { "include": "#string" },
+            { "include": "#number" }
+          ]
+        }
+      ]
+    },
+    "block": {
+      "patterns": [
+        {
+          "name": "meta.block.gpml",
+          "begin": "\\{",
+          "end": "\\}",
+          "patterns": [
+            { "include": "#tag" },
+            { "include": "#expression" },
+            { "include": "#string" },
+            { "include": "#number" }
+          ]
+        }
+      ]
+    },
+    "expression": {
+      "patterns": [
+        {
+          "name": "meta.embedded.line.gpml",
+          "begin": "\\$\\{",
+          "end": "\\}",
+          "patterns": [
+            { "include": "#string" },
+            { "include": "#number" },
+            { "include": "#keyword" }
+          ]
+        }
+      ]
+    },
   "repository": {
     "comment": {
       "patterns": [
@@ -21,11 +107,46 @@
     "tag": {
       "patterns": [
         {
+          "name": "punctuation.definition.tag.begin.gpml",
+          "match": "<"
+        },
+        {
+          "name": "punctuation.definition.tag.end.gpml",
+          "match": "/>|>"
+        },
+        {
           "name": "entity.name.tag.gpml",
-          "match": "<\\/?[a-zA-Z_][\\w\\-]*"
+          "match": "[a-zA-Z_][\\w\\-]*"
+        },
+        {
+          "name": "punctuation.definition.tag.close.gpml",
+          "match": "</"
+        },
+        {
+          "name": "entity.other.attribute-name.gpml",
+          "match": "[a-zA-Z_][\\w\\-]*"
+        },
+        {
+          "name": "keyword.operator.assignment.gpml",
+          "match": "="
         }
       ]
     },
+      "block": {
+        "patterns": [
+          {
+            "name": "meta.block.gpml",
+            "begin": "\\{",
+            "end": "\\}",
+            "patterns": [
+              { "include": "#tag" },
+              { "include": "#expression" },
+              { "include": "#string" },
+              { "include": "#number" }
+            ]
+          }
+        ]
+      },
     "string": {
       "patterns": [
         {
@@ -50,7 +171,7 @@
       "patterns": [
         {
           "name": "keyword.control.gpml",
-          "match": "\\b(import|export|as)\\b"
+          "match": "\\b(import|export|as|def)\\b"
         }
       ]
     }

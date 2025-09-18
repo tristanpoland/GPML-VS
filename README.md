@@ -15,39 +15,28 @@ The GPML-VS extension brings a modern, web-development-like experience to native
 - Language icon and extension branding
 - Line comments with `//`
 - Ready for future features: code snippets, autocompletion, error highlighting, and more
+- **Parameter Hints for Custom Components:** When you use a custom component (name starts with a capital letter), the extension will show you its parameters for a better developer experience (planned feature).
 
 ## Example
 ```gpml
-import ./Card.gpml as Card // (as is not required)
-
-<root>
-    // Inline comments supported
-    <Card title="Card Title" content="This is the content of the card." />
-
-    <flex dir="horizontal" spacing=10>
-        <button text="Button 1" />
-        <button text="Button 2" />
-        <button text="Button 3" />
-    </flex>
-
-    <p text="This is a sample text below the buttons." size=16 color="blue" />
-
-    <div padding=10 backgroundColor="gray">
-        <p text="This is a paragraph inside a div." size=14 color="black" />
+def Card(title, content) {
+    <div>
+        <h1>${title}</h1>
+        <content text="${content}" />
     </div>
-
-</root>
-```
-
-meanwhile in Card.gpml
-
-```gpml
-<Card>
-    <title text="Card Title" />
-    <content text="This is the content of the card." />
-</Card>
+}
 
 export Card
+```
+
+Usage in another file:
+
+```gpml
+import ./Card.gpml as Card
+
+<root>
+    <Card title="Card Title" content="This is the content of the card." />
+</root>
 ```
 
 ## Vision
